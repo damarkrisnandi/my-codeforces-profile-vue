@@ -5,5 +5,5 @@ export async function getUser() {
 }
 
 export async function getRating() {
-    return fetch(`http://codeforces.com/api/user.rating?handle=${handle}`).then(_ => _.ok ? _.json() : null)
+    return fetch(`${URL_API}/user.rating?handle=${handle}`).then(_ => _.ok ? _.json() : null)
 }
