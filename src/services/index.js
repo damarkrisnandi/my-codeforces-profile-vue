@@ -1,0 +1,9 @@
+const URL_API = 'https://codeforces.com/api';
+export const handle = 'malingayam';
+export async function getUser() {
+    return fetch(`${URL_API}/user.info?handles=${handle}`).then(_ => _.ok ? _.json() : null)
+}
+
+export async function getRating() {
+    return fetch(`http://codeforces.com/api/user.rating?handle=${handle}`).then(_ => _.ok ? _.json() : null)
+}
