@@ -50,6 +50,7 @@ import { getRating } from '../../services/index'
         },
         { text: 'Rank', value: 'rank' },
         { text: 'Rating Change', value: 'ratingChange' },
+        { text: 'Rating', value: 'newRating'}
       ],
       contests: []
     }),
