@@ -9,6 +9,9 @@
           <Rating/>  
         </div>
       </div>
+      <div v-if="$store.state.menu.menu == 2">
+        <Contests/>
+      </div>
     </v-container>
     <BottomNav/>
   </div>
@@ -18,12 +21,14 @@
 import Profile from './parts/profile'
 import BottomNav from './parts/bottomNav'
 import Rating from './parts/rating'
+import Contests from './parts/contests'
   export default {
     name: 'HelloWorld',
     components: {
       Profile,
       BottomNav,
-      Rating
+      Rating,
+      Contests
     },
     data: () => ({
       
