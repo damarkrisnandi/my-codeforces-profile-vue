@@ -32,6 +32,15 @@
             <label style="color: red">{{ Math.abs(item.ratingChange) }}</label>
         </div>
     </template>
+    <template v-slot:[`item.newRating`]="{ item }">
+        <div v-if="item.newRating === Math.max(...contests.map(item => item.newRating))">
+            <v-icon color="yellow">fa fa-crown</v-icon>&nbsp;
+            <label style="color: gold">{{ item.newRating }}</label>
+        </div>
+        <div v-else>
+            {{ item.newRating }}
+        </div>
+    </template>
   </v-data-table>
 </template>
 
