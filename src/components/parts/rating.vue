@@ -1,7 +1,23 @@
 <template>
   <div>
         <line-chart :chart-data="dataCollection"
-        :options="{responsive: true, maintainAspectRatio: false}"
+        :options="{
+            responsive: true, 
+            maintainAspectRatio: false,
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        display: false
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        suggestedMin: Math.max(...ratingData) <= 1900 ? 0 : 1200,
+                        suggestedMax: Math.max(...ratingData) <= 1900 ? 2000 : 3900
+                    }
+                }]
+            }
+            }"
         ></line-chart>
         <!-- <label align="right">Recovery percentage</label>
         <h1> {{ percentage }}%</h1> -->
@@ -27,11 +43,12 @@ export default {
         LineChart
     },
     async mounted() {
-        const data2 = await getRating();
+        let data2 = (await getRating()).result;
+        let data3 = data2.slice(data2.length - 10, data2.length)
         let bgColor = [];
-        data2.result.forEach(item => {
-            const view = item.contestName.replace('Codeforces Round ', '').split(',')[0];
-            this.labelData.push(view + (view.substr(view.length - 1, 1) !== ')' ? ')' : ''));
+        data3.forEach(item => {
+            const view = item.contestName;
+            this.labelData.push(view);
             this.ratingData.push(item.newRating);
             bgColor.push(item.newRating >= item.oldRating ? 'green' : 'red')
         });
@@ -39,7 +56,7 @@ export default {
                 labels: this.labelData,
                 datasets: [
                     {
-                        label: handle,
+                        label: `${handle} - Last 10 Contests`,
                         backgroundColor: bgColor,
                         data: this.ratingData
                     },

@@ -1,4 +1,5 @@
 <template>
+  <div>
   <v-data-table
     :headers="headers"
     :items="contests"
@@ -42,6 +43,8 @@
         </div>
     </template>
   </v-data-table>
+  <div class="padding-bottom"></div>
+  </div>
 </template>
 
 <script>
@@ -79,5 +82,7 @@ import { getRating } from '../../services/index'
 </script>
 
 <style>
-
+  .padding-bottom {
+    padding: 30px;
+  }
 </style>
